@@ -1,0 +1,14 @@
+.aboutMe_title {
+    position: relative;
+}
+
+.aboutMe_title::before {
+    position: absolute;
+    bottom: -16px;
+    left: 49.5%;
+    content: '';
+    width: 24px;
+    height: 4px;
+    background-color: #6600ff;
+    border-radius: 4px;
+}

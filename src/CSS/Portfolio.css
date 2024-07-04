@@ -1,0 +1,54 @@
+.arrowBox {
+    position: relative;
+    /* border: 1px solid black; */
+}
+
+.arrowBox.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.arrow {
+    position: absolute;
+    top: -5rem;
+
+    transform: translate(-50%, -50%);
+    transform: rotate(0deg);
+    cursor: pointer;
+    left: 50%;
+}
+
+.arrow span {
+    display: block;
+    width: 1.5vw;
+    height: 1.5vw;
+    border-bottom: 5px solid rgb(81, 81, 81);
+    border-right: 5px solid rgb(81, 81, 81);
+    transform: rotate(45deg);
+    margin: -10px;
+    animation: animate 2s infinite;
+}
+
+.arrow span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arrow span:nth-child(3) {
+    animation-delay: -0.4s;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-20px, -20px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(20px, 20px);
+    }
+}
