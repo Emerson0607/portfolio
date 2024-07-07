@@ -33,8 +33,8 @@ function DrawerAppBar(props) {
   const drawer = (
     <div>
       <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-        <Typography variant="h6" sx={{ my: 2 }}>
-          EMERSON
+        <Typography variant="h6" sx={{ my: 2 }}  onClick={() => onNavClick('Home')}>
+          Emerson Martinez
         </Typography>
         <Divider />
         <List>
@@ -60,7 +60,6 @@ function DrawerAppBar(props) {
         sx={{
           background: '#FDFDFD',
           boxShadow: '0px 2px 2px -2px rgba(0,0,0,0.1)', // Bottom-only box shadow
-          
         }}
       >
         <Toolbar>
@@ -82,32 +81,40 @@ function DrawerAppBar(props) {
               display: { xs: 'none', sm: 'block' },
               ml: '70px',
               fontSize: '1rem',
-              letterSpacing: '1em'
-              
+              letterSpacing: '1em',
+              cursor: 'pointer', // Add cursor pointer
             }}
+            onClick={() => onNavClick('Home')} // Navigate to Home
           >
-            <Typography component="span" sx={{ color: '#1C2D55', fontWeight: 700, fontSize: '24px', fontFamily: 'Roboto, sans-serif' }}>
+            <Typography
+              component="span"
+              sx={{
+                color: '#1C2D55',
+                fontWeight: 700,
+                fontSize: '24px',
+                fontFamily: 'Roboto, sans-serif',
+              }}
+            >
               EM
             </Typography>
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' }, mr: 8 }}>
-  {navItems.map((item, index) => (
-    <Button
-      key={item}
-      sx={{
-        color: '#1C2D55',
-        fontWeight: 400,
-        textTransform: 'none',
-        fontSize: '16px',
-        mr: index < navItems.length - 1 ? 2 : 0, // Add bottom margin except for the last item
-      }}
-      onClick={() => onNavClick(item)}
-    >
-      {item}
-    </Button>
-  ))}
-</Box>
-
+            {navItems.map((item, index) => (
+              <Button
+                key={item}
+                sx={{
+                  color: '#1C2D55',
+                  fontWeight: 400,
+                  textTransform: 'none',
+                  fontSize: '16px',
+                  mr: index < navItems.length - 1 ? 2 : 0, // Add bottom margin except for the last item
+                }}
+                onClick={() => onNavClick(item)}
+              >
+                {item}
+              </Button>
+            ))}
+          </Box>
         </Toolbar>
       </AppBar>
       <nav>
@@ -117,11 +124,11 @@ function DrawerAppBar(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true // Better open performance on mobile.
+            keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth }
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
         >
           {drawer}
@@ -133,7 +140,7 @@ function DrawerAppBar(props) {
 
 DrawerAppBar.propTypes = {
   window: PropTypes.func,
-  onNavClick: PropTypes.func.isRequired
+  onNavClick: PropTypes.func.isRequired,
 };
 
 export default DrawerAppBar;

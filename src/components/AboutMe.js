@@ -5,6 +5,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import '../CSS/AboutMe.css';
 import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -18,11 +19,15 @@ const textStyles = {
   fontFamily: 'Roboto, sans-serif',
 };
 
+
+
 const AboutMe = () => {
+  const isMobile = useMediaQuery('(max-width:600px)');
+
   return (
     <div style={{width:'100vw', height:'100vh', backgroundColor:'#FDFDFD'}}>
       <div className='aboutMe_title'>
-      <Typography variant="h4" sx={{fontWeight:800, fontSize:'36px', textAlign:'center', marginTop:'48px', color:'rgb(28, 45, 85)'}}>
+      <Typography variant="h4" sx={{fontWeight:800, fontSize:'36px', textAlign:'center', marginTop:  isMobile ? '32px' : '48px', color:'rgb(28, 45, 85)'}}>
         About Me
       </Typography>
       </div>
@@ -32,9 +37,9 @@ const AboutMe = () => {
       alignItems="center"
       sx={{ flexGrow: 1, height: '100vh'}} // Adjust height as needed
     >
-      <Grid container spacing={2} justifyContent="center" alignItems="center" gap={3} sx={{marginTop:'-10rem'}}>
-        <Grid item xs={4}>
-          <Item sx={{color:'rgb(28, 45, 85)', textAlign:'left', fontSize:'16px', backgroundColor:'#FDFDFD', boxShadow:'none', height:'500px' }}>
+      <Grid container spacing={2} justifyContent="center" alignItems="center" gap={3} sx={{marginTop:  isMobile ? '18rem' : '-10rem'}}>
+        <Grid item xs={10} md={4}>
+          <Item sx={{color:'rgb(28, 45, 85)', textAlign:'left', fontSize: isMobile ? '15px' :'16px', backgroundColor:'#FDFDFD', boxShadow:'none', height: isMobile ? '100%' :'500px' }}>
           <h2>Get to know me!</h2>
           <p style={{ marginBottom: '1em', marginTop:'1rem', lineHeight: '1.6'}}>Hi! I'm Emerson L. Martinez, a <b>passionate</b> web developer, software developer, and computer programmer from the Philippines.</p>
           <p style={{ marginBottom: '1em', lineHeight: '1.6'}}> I recently graduated with a Bachelor of Science in Computer Science at Laguna University. My journey in the field of technology has been driven by my love for coding and solving complex problems.</p>
@@ -43,8 +48,8 @@ const AboutMe = () => {
 
           </Item>
         </Grid>
-        <Grid item xs={4}>
-  <Item sx={{ color: 'rgb(28, 45, 85)', textAlign: 'left', boxShadow: 'none', backgroundColor: '#FDFDFD', height: '500px' }}>
+        <Grid item xs={10} md={4}>
+  <Item sx={{ color: 'rgb(28, 45, 85)', textAlign: 'left', boxShadow: 'none', backgroundColor: '#FDFDFD', height: isMobile ? '100%' : '500px' }}>
     <h2>My Skills</h2>
     <Grid container spacing={1} sx={{ width: '300px', marginTop: '16px' }}>
   <Grid item>

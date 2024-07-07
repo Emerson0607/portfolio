@@ -57,10 +57,10 @@ const Portfolio = ({ onArrowClick }) => {
   return (
     <div>
       <Box sx={{ flexGrow: 1, height: '100vh', width: '100vw' }} display="flex" justifyContent="center" alignItems="center">
-        <Grid container sx={{ width: '80%' }}>
+        <Grid container sx={{ width: isMobile ? '100%' : '80%' }}>
           <Grid justifyContent="center" alignItems="center" item xs={12} md={5}>
             <Item sx={{ backgroundColor: 'transparent', boxShadow: '0 0 0 0' }}>
-              <img src={emeee} style={{ marginTop: '16px', width: 300, height: 300, borderRadius: '50%' }} alt="eme" />
+              <img src={emeee} style={{ marginTop: isMobile ? '10rem' : '16px', width: isMobile ? '200px' : '300px', height: isMobile ? '200px' : '300px', borderRadius: '50%' }} alt="eme" />
             </Item>
           </Grid>
           <Grid item xs={12} md={7}>
@@ -69,13 +69,14 @@ const Portfolio = ({ onArrowClick }) => {
                 ...textStyles,
                 backgroundColor: 'transparent',
                 boxShadow: '0 0 0 0',
-                marginLeft: '48px'
+                marginLeft: isMobile ? '8px' : '48px',
+                padding:'32px'
               }}
               sx={{ height: 500 }}
             >
-              <div style={{ color: 'rgb(28, 45, 85)' }}>
-                <h1 style={{ fontSize: '70px' }}>Hi, I'm Emerson</h1>
-                <h1 style={{ fontWeight: 500 }}> I'm a
+              <div style={{ color: 'rgb(28, 45, 85)', marginTop: isMobile ? '-20px' : '0px' }}>
+                <h1 style={{ fontSize: isMobile ? '40px' : '70px' }}>Hi, I'm Emerson</h1>
+                <h1 style={{ fontWeight: 500, fontSize: isMobile ? '20px' : '30px', marginTop: isMobile ? '20px' :'0px' }}> I'm a
                   <TypeAnimation
                     sequence={[
                       " Web Developer",
@@ -87,13 +88,17 @@ const Portfolio = ({ onArrowClick }) => {
                     ]}
                     speed={20}
                     repeat={Infinity}
-                    style={{ fontSize: '30px', fontWeight: 800, color: '#6600ff', fontFamily: 'Roboto, sans-serif' }}
+                    style={{ fontSize: isMobile ? '20px' : '30px', fontWeight: 800, color: '#6600ff', fontFamily: 'Roboto, sans-serif' }}
                   />
                 </h1>
-                <p style={{ maxWidth: 500, fontSize: '20px', marginTop: '16px', lineHeight: '32px', color: '#898989', fontFamily: 'Roboto, sans-serif' }}>Passionate about coding and solving complex problems, specializing in crafting interactive web applications. I enjoy creating innovative solutions and bringing online visions to life with a keen eye for aesthetics.</p>
+                <p style={{ maxWidth: 500, fontSize: isMobile ? '15px' : '20px', marginTop: '16px', lineHeight: '32px', color: '#898989', fontFamily: 'Roboto, sans-serif' }}>Passionate about coding and solving complex problems, specializing in crafting interactive web applications. I enjoy creating innovative solutions and bringing online visions to life with a keen eye for aesthetics.</p>
 
+                <Grid container>
+                <Grid item xs={6} md={12}>
                 <Button variant="outlined" sx={{ mt: '32px', color: 'rgb(28, 45, 85)', textTransform: 'none' }} onClick={handleDownload}>Download CV</Button>
-                <Stack direction="row" spacing={2} sx={{ mt: '24px' }}>
+                </Grid>
+                <Grid item xs={6} md={12}>
+                <Stack direction="row" spacing={2} sx={{ mt: isMobile ? '32px' : '24px' }}>
                   <a href="https://web.facebook.com/people/Emerson-Martinez/100010291444658/" target="_blank" rel="noopener noreferrer">
                     <img style={avatarAttribute} alt="Facebook" src={facebook} />
                   </a>
@@ -107,13 +112,15 @@ const Portfolio = ({ onArrowClick }) => {
                     <img style={avatarAttribute} alt="Linkedin" src={linkedin} />
                   </a>
                 </Stack>
+                </Grid>
+                </Grid>
               </div>
             </Item>
           </Grid>
         </Grid>
       </Box>
-      <div className="arrowBox" onClick={handleArrowClick}>
-        <div className="arrow"><span></span></div>
+      <div className="arrowBox" onClick={handleArrowClick} >
+        <div className="arrow" style={{display: isMobile ? 'none' : 'block'}}><span></span></div>
       </div>
     </div>
   )
