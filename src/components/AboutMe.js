@@ -14,13 +14,6 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center'
 }));
 
-const textStyles = {
-  color:'rgb(28, 45, 85)',
-  fontFamily: 'Roboto, sans-serif',
-};
-
-
-
 const AboutMe = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
 
