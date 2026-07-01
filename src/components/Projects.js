@@ -154,7 +154,7 @@ const Projects = forwardRef((props, ref) => {
             textAlign: 'center',
           }}
         >
-          <img src={selectedImage} alt="Full Project Image" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+          <img src={selectedImage} alt="Full Project" style={{ maxWidth: '100%', maxHeight: '100%' }} />
         </Box>
       </Modal>
     </div>

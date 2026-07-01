@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, Link } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 
 import useMediaQuery from '@mui/material/useMediaQuery';
 
