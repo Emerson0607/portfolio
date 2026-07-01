@@ -60,7 +60,18 @@ const Portfolio = ({ onArrowClick }) => {
         <Grid container sx={{ width: isMobile ? '100%' : '80%' }}>
           <Grid justifyContent="center" alignItems="center" item xs={12} md={5}>
             <Item sx={{ backgroundColor: 'transparent', boxShadow: '0 0 0 0' }}>
-              <img src={emeee} style={{ marginTop: isMobile ? '10rem' : '16px', width: isMobile ? '200px' : '300px', height: isMobile ? '200px' : '300px', borderRadius: '50%' }} alt="eme" />
+              <img
+                src={emeee}
+                style={{
+                  marginTop: isMobile ? '10rem' : '16px',
+                  width: isMobile ? '200px' : '300px',
+                  height: isMobile ? '200px' : '300px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  objectPosition: 'center 15%', // ibinaba yung visible crop papunta sa baba
+                }}
+                alt="eme"
+              />
             </Item>
           </Grid>
           <Grid item xs={12} md={7}>
@@ -93,11 +104,11 @@ const Portfolio = ({ onArrowClick }) => {
                 </h1>
                 <p style={{ maxWidth: 500, fontSize: isMobile ? '15px' : '20px', marginTop: '16px', lineHeight: '32px', color: '#898989', fontFamily: 'Roboto, sans-serif' }}>Passionate about coding and solving complex problems, specializing in crafting interactive web applications. I enjoy creating innovative solutions and bringing online visions to life with a keen eye for aesthetics.</p>
 
-                <Grid container>
-                <Grid item xs={6} md={12}>
+                {/* <Grid container>
+                <Grid item xs={5} md={12}>
                 <Button variant="outlined" sx={{ mt: '32px', color: 'rgb(28, 45, 85)', textTransform: 'none' }} onClick={handleDownload}>Download CV</Button>
                 </Grid>
-                <Grid item xs={6} md={12}>
+                <Grid item xs={7} md={12}>
                 <Stack direction="row" spacing={2} sx={{ mt: isMobile ? '32px' : '24px' }}>
                   <a href="https://web.facebook.com/people/Emerson-Martinez/100010291444658/" target="_blank" rel="noopener noreferrer">
                     <img style={avatarAttribute} alt="Facebook" src={facebook} />
@@ -113,6 +124,38 @@ const Portfolio = ({ onArrowClick }) => {
                   </a>
                 </Stack>
                 </Grid>
+                </Grid> */}
+
+                <Grid container alignItems="center" sx={{ mt: '1rem' }}>
+                  <Grid item xs={5} md={12} sx={{ display: 'flex', justifyContent: isMobile ? 'flex-start' : 'inherit' }}>
+                    <Button
+                      variant="outlined"
+                      sx={{ mt: isMobile ? 0 : '32px', color: 'rgb(28, 45, 85)', textTransform: 'none' }}
+                      onClick={handleDownload}
+                    >
+                      Download Resume
+                    </Button>
+                  </Grid>
+                  <Grid item xs={7} md={12} sx={{ display: 'flex', justifyContent: isMobile ? 'flex-end' : 'inherit' }}>
+                    <Stack
+                      direction="row"
+                      spacing={isMobile ? 1 : 2}
+                      sx={{ mt: isMobile ? 0 : '24px' }}
+                    >
+                      <a href="https://web.facebook.com/people/Emerson-Martinez/100010291444658/" target="_blank" rel="noopener noreferrer">
+                        <img style={avatarAttribute} alt="Facebook" src={facebook} />
+                      </a>
+                      <a href="mailto:martinezemerson52@gmail.com" target="_blank" rel="noopener noreferrer">
+                        <img style={avatarAttribute} alt="Email" src={gmail} />
+                      </a>
+                      <a href="https://github.com/Emerson0607" target="_blank" rel="noopener noreferrer">
+                        <img style={avatarAttribute} alt="Github" src={github} />
+                      </a>
+                      <a href="https://www.linkedin.com/in/emerson-martinez-25510824b/" target="_blank" rel="noopener noreferrer">
+                        <img style={avatarAttribute} alt="Linkedin" src={linkedin} />
+                      </a>
+                    </Stack>
+                  </Grid>
                 </Grid>
               </div>
             </Item>

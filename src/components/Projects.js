@@ -129,7 +129,7 @@ const Projects = forwardRef((props, ref) => {
 
       {!showAllProjects && (
         <Box display="flex" justifyContent="center">
-          <Button variant="contained" onClick={() => setShowAllProjects(true)} sx={{ textTransform: 'none', backgroundColor: '#6600ff', width:isMobile ? '100px' : '100px', marginTop:isMobile ? '0' : '-10px' }}>View all</Button>
+          <Button variant="contained" onClick={() => setShowAllProjects(true)} sx={{ textTransform: 'none', backgroundColor: '#6600ff', width:isMobile ? '100px' : '100px', marginTop:isMobile ? '0' : '-10px', marginBottom:isMobile ? '0' :'1rem' }}>View all</Button>
         </Box>
       )}
 
