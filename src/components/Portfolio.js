@@ -28,7 +28,7 @@ const socials = [
 ];
 
 const handleDownload = () => {
-  const url = process.env.PUBLIC_URL + '/ELM_CV.pdf';
+  const url = process.env.PUBLIC_URL + '/Emerson_Martinez_Resume.pdf';
   const link = document.createElement('a');
   link.href = url;
   link.setAttribute('download', 'Emerson_Martinez_Resume.pdf');
