@@ -2,89 +2,82 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  boxShadow: 'none',
-  backgroundColor: '#FDFDFD',
-}));
+import { colors, fonts, layout } from '../theme/tokens';
 
 const projectData = [
   {
     name: 'My Portfolio',
-    description: 'This portfolio marks my exciting journey into the world of web development, crafted entirely with React, Material UI, and Mantine components—a technology stack I\'m actively mastering to build modern, responsive web applications.',
+    description: "This portfolio marks my journey into web development, crafted with React, Material UI, and Mantine — a stack I'm actively mastering to build modern, responsive web applications.",
     image: process.env.PUBLIC_URL + '/image/portfolio.png',
-    technologies: ['HTML', 'CSS', 'Javascript', 'Node.js', 'React', 'Material UI', 'Mantine', 'Vercel']
+    technologies: ['HTML', 'CSS', 'Javascript', 'Node.js', 'React', 'Material UI', 'Mantine', 'Vercel'],
   },
   {
     name: 'DSS CESU',
-    description: 'A Decision Support System for Community Extension Services Using Machine Learning Model is a web application using Flask Python framework. The system leverages machine learning to analyze gathered data, assisting users in decision-making by predicting and recommending the top three programs for community implementation.',
+    description: 'A Decision Support System for Community Extension Services using a machine learning model, built with Flask. Analyzes gathered data to predict and recommend the top three programs for community implementation.',
     image: process.env.PUBLIC_URL + '/image/cesu.png',
-    technologies: ['HTML', 'CSS', 'Javascript', 'Python', 'Flask', 'SQLite', 'Bootstrap']
+    technologies: ['HTML', 'CSS', 'Javascript', 'Python', 'Flask', 'SQLite', 'Bootstrap'],
   },
   {
-    name: 'Juan\'s Sales and Inventory Management System',
-    description: 'Developed for a client to streamline operations in their food business. This project showcases my expertise in building robust desktop applications using Vb.NET and integrating backend functionalities to ensure smooth business operations.',
+    name: "Juan's Sales and Inventory Management System",
+    description: 'Built for a client to streamline operations in their food business — a desktop application using VB.NET with backend functionality for smooth day-to-day operations.',
     image: process.env.PUBLIC_URL + '/image/jsis.png',
-    technologies: ['Visual Basic', '.NET Framework', 'GUNA Framework', 'MySQL']
-  }
+    technologies: ['Visual Basic', '.NET Framework', 'GUNA Framework', 'MySQL'],
+  },
 ];
 
 const AllProjects = () => {
   return (
-    <div style={{ width: '100vw', height: '100vh', backgroundColor: '#FDFDFD' }}>
-      <Typography variant="h4" sx={{ fontWeight: 800, fontSize: '36px', textAlign: 'center', marginTop: '48px', color: 'rgb(28, 45, 85)' }}>
-        All Projects
+    <Box sx={{ width: '100vw', minHeight: '100vh', backgroundColor: colors.paper, py: '80px' }}>
+      <Typography sx={{ fontFamily: fonts.mono, fontSize: '13px', letterSpacing: '0.14em', color: colors.accent, textAlign: 'center' }}>
+        PROJECTS
       </Typography>
-      <Box display="flex" justifyContent="center" alignItems="center" sx={{ flexGrow: 1, height: '100vh' }}>
-        <Grid container gap={2} justifyContent="center" alignItems="center" sx={{ width: '100%' }}>
+      <Typography
+        sx={{ fontFamily: fonts.display, fontWeight: 700, fontSize: '44px', textAlign: 'center', color: colors.ink, mt: 1, mb: 6 }}
+      >
+        All projects
+      </Typography>
+
+      <Box display="flex" justifyContent="center">
+        <Grid container spacing={3} sx={{ width: '78%', maxWidth: layout.maxWidth }}>
           {projectData.map((project, index) => (
-            <Grid item xs={3} key={index} sx={{ height: '500px' }}>
-              <Card sx={{ width: '100%', height: '100%', margin: '0 auto', boxShadow: 'none', border: '1px solid #dedede' }}>
-                <CardMedia
-                  component="img"
-                  alt="Project Image"
-                  height="40%"
-                  image={project.image}
-                  style={{ cursor: 'pointer' }}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 600 }}>
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box
+                sx={{
+                  height: '100%',
+                  border: `1px solid ${colors.line}`,
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  backgroundColor: colors.surface,
+                  transition: 'border-color 0.2s ease, transform 0.2s ease',
+                  '&:hover': { borderColor: colors.accent, transform: 'translateY(-2px)' },
+                }}
+              >
+                <Box component="img" src={project.image} alt={project.name} sx={{ width: '100%', height: '190px', objectFit: 'cover', display: 'block' }} />
+                <Box sx={{ p: '20px' }}>
+                  <Typography sx={{ fontFamily: fonts.display, fontWeight: 700, fontSize: '18px', color: colors.ink, mb: 1 }}>
                     {project.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography sx={{ fontFamily: fonts.body, fontSize: '14px', lineHeight: 1.65, color: colors.slate, mb: 2 }}>
                     {project.description}
                   </Typography>
-                </CardContent>
-                <CardActions>
-                  <Grid item xs={4}>
-                    <Item sx={{ color: 'rgb(28, 45, 85)', textAlign: 'left', height: '500px', width: '380px' }}>
-                      <Grid container spacing={1} sx={{ width: '100%' }}>
-                        {project.technologies.map((tech, index) => (
-                          <Grid item key={index}>
-                            <Item sx={{ fontSize: '12px', fontWeight: 500, padding: '5px', backgroundColor: '#D9E3F7', color: '#717171' }}>{tech}</Item>
-                          </Grid>
-                        ))}
-                      </Grid>
-                    </Item>
-                  </Grid>
-                </CardActions>
-              </Card>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    {project.technologies.map((tech, i) => (
+                      <Box
+                        key={i}
+                        sx={{ fontFamily: fonts.mono, fontSize: '11px', color: colors.slate, border: `1px solid ${colors.line}`, borderRadius: '6px', px: '8px', py: '3px' }}
+                      >
+                        {tech}
+                      </Box>
+                    ))}
+                  </Box>
+                </Box>
+              </Box>
             </Grid>
           ))}
         </Grid>
       </Box>
-    </div>
+    </Box>
   );
-}
+};
 
 export default AllProjects;

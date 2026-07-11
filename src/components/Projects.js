@@ -2,143 +2,158 @@ import React, { useState, forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
 import Modal from '@mui/material/Modal';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-  boxShadow: 'none',
-  backgroundColor: '#FDFDFD',
-}));
+import { colors, fonts, layout } from '../theme/tokens';
 
 const Projects = forwardRef((props, ref) => {
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
-  const [showAllProjects, setShowAllProjects] = useState(false); // State to control showing all projects
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const isMobile = useMediaQuery('(max-width:600px)');
 
   const handleOpen = (image) => {
     setSelectedImage(image);
     setOpen(true);
   };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const handleClose = () => setOpen(false);
 
   const projectData = [
     {
       name: 'My Portfolio',
-      description: 'This portfolio marks my exciting journey into the world of web development, crafted entirely with React, Material UI, and Mantine components—a technology stack I\'m actively mastering to build modern, responsive web applications.',
+      description: "This portfolio marks my journey into web development, crafted with React, Material UI, and Mantine — a stack I'm actively mastering to build modern, responsive web applications.",
       image: process.env.PUBLIC_URL + '/image/portfolio.png',
-      technologies: ['HTML', 'CSS', 'Javascript', 'Node.js', 'React', 'Material UI', 'Mantine', 'Vercel']
+      technologies: ['HTML', 'CSS', 'Javascript', 'Node.js', 'React', 'Material UI', 'Mantine', 'Vercel'],
     },
     {
       name: 'DSS CESU',
-      description: 'A Decision Support System for Community Extension Services Using Machine Learning Model is a web application using Flask Python framework. The system leverages machine learning to analyze gathered data, assisting users in decision-making by predicting and recommending the top three programs for community implementation.',
+      description: 'A Decision Support System for Community Extension Services using a machine learning model, built with Flask. Analyzes gathered data to predict and recommend the top three programs for community implementation.',
       image: process.env.PUBLIC_URL + '/image/cesu.png',
-      technologies: ['HTML', 'CSS', 'Javascript', 'Python', 'Flask', 'SQLite', 'Bootstrap']
+      technologies: ['HTML', 'CSS', 'Javascript', 'Python', 'Flask', 'SQLite', 'Bootstrap'],
     },
     {
-      name: 'Juan\'s Sales and Inventory Management System',
-      description: 'Developed for a client to streamline operations in their food business. This project showcases my expertise in building robust desktop applications using Vb.NET and integrating backend functionalities to ensure smooth business operations.',
+      name: "Juan's Sales and Inventory Management System",
+      description: 'Built for a client to streamline operations in their food business — a desktop application using VB.NET with backend functionality for smooth day-to-day operations.',
       image: process.env.PUBLIC_URL + '/image/jsis.png',
-      technologies: ['Visual Basic', '.NET Framework', 'GUNA Framework', 'MySQL']
+      technologies: ['Visual Basic', '.NET Framework', 'GUNA Framework', 'MySQL'],
     },
     {
       name: 'San Isidro Blotter System',
-      description: 'Developed a comprehensive blotter system to facilitate incident recording and management for efficient operations.',
+      description: 'A comprehensive blotter system to facilitate incident recording and management for efficient barangay operations.',
       image: process.env.PUBLIC_URL + '/image/sibs.png',
-      technologies: ['Visual Basic', '.NET Framework', 'GUNA Framework', 'MySQL']
+      technologies: ['Visual Basic', '.NET Framework', 'GUNA Framework', 'MySQL'],
     },
     {
       name: 'MSTLUSTUDENT Blogspot',
-      description: 'Developed in 2021 during the COVID-19 pandemic, this project utilized the CMS Blogspot platform to create a blog documenting the impact of COVID-19 on our lives.',
+      description: 'Built in 2021 during the COVID-19 pandemic on the Blogspot platform, documenting the impact of COVID-19 on our lives.',
       image: process.env.PUBLIC_URL + '/image/pandemic.png',
-      technologies: ['Blogspot']
+      technologies: ['Blogspot'],
     },
     {
       name: 'CHAD POS',
-      description: 'Developed a Point of Sale (POS) system specifically for sari-sari stores. This system enables barcode generation for items and integrates a barcode scanner for seamless operation.',
+      description: 'A Point of Sale system for sari-sari stores, with barcode generation for items and barcode scanner integration for seamless checkout.',
       image: process.env.PUBLIC_URL + '/image/chadpos.png',
-      technologies: ['Visual Basic', '.NET Framework', 'GUNA Framework', 'MySQL', 'Firebase', 'Kotlin']
-    }
+      technologies: ['Visual Basic', '.NET Framework', 'GUNA Framework', 'MySQL', 'Firebase', 'Kotlin'],
+    },
   ];
 
-  const visibleProjects = showAllProjects ? projectData : projectData.slice(0, 3); // Show all projects if showAllProjects is true   isMobile ? '32px' : 
-  const isMobile = useMediaQuery('(max-width:600px)');
-  return (
+  const visibleProjects = showAllProjects ? projectData : projectData.slice(0, 3);
 
-    <div ref={ref}  style={{ width: '100vw', minHeight: '100vh', backgroundColor: '#FDFDFD', marginBottom :isMobile ? '32px' : '0'}}>
-      <div className='aboutMe_title' >
-        <Typography variant="h4" sx={{ fontWeight: 800, fontSize: '36px', textAlign: 'center', marginTop: isMobile ? '20rem' : '0', color: 'rgb(28, 45, 85)' }}>
-          Projects
-        </Typography>
-      </div>
-      <Box 
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{ flexGrow: 1, height: '100%', width:'100%', marginTop:'4rem'}} // Adjust height as needed
+  return (
+    <Box ref={ref} sx={{ width: '100vw', minHeight: '100vh', backgroundColor: colors.surface, py: isMobile ? '64px' : '96px' }}>
+      <Typography sx={{ fontFamily: fonts.mono, fontSize: '13px', letterSpacing: '0.14em', color: colors.accent, textAlign: 'center' }}>
+        PROJECTS
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: fonts.display,
+          fontWeight: 700,
+          fontSize: isMobile ? '32px' : '44px',
+          textAlign: 'center',
+          color: colors.ink,
+          mt: 1,
+        }}
       >
-        <Grid container spacing={2} justifyContent="center" sx={{ width: '80%', marginBottom:'2rem' }}>
+        Things I've built
+      </Typography>
+
+      <Box display="flex" justifyContent="center" sx={{ mt: isMobile ? 4 : 7 }}>
+        <Grid container spacing={3} justifyContent="center" sx={{ width: isMobile ? '88%' : '78%', maxWidth: layout.maxWidth }}>
           {visibleProjects.map((project, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ height: '100%', boxShadow: 'none', border: '1px solid #dedede', borderRadius: '8px' }}>
-                <CardMedia
+              <Box
+                sx={{
+                  height: '100%',
+                  border: `1px solid ${colors.line}`,
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  backgroundColor: colors.surface,
+                  transition: 'border-color 0.2s ease, transform 0.2s ease',
+                  '&:hover': { borderColor: colors.accent, transform: 'translateY(-2px)' },
+                }}
+              >
+                <Box
                   component="img"
-                  alt="Project Image"
-                  height="200"
-                  image={project.image}
+                  src={project.image}
+                  alt={project.name}
                   onClick={() => handleOpen(project.image)}
-                  style={{ cursor: 'pointer' }}
+                  sx={{ width: '100%', height: '190px', objectFit: 'cover', cursor: 'pointer', display: 'block' }}
                 />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 600 }}>
+                <Box sx={{ p: '20px' }}>
+                  <Typography sx={{ fontFamily: fonts.display, fontWeight: 700, fontSize: '18px', color: colors.ink, mb: 1 }}>
                     {project.name}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography sx={{ fontFamily: fonts.body, fontSize: '14px', lineHeight: 1.65, color: colors.slate, mb: 2 }}>
                     {project.description}
                   </Typography>
-                </CardContent>
-                <CardActions>
-                  <Grid container spacing={1}>
-                    {project.technologies.map((tech, index) => (
-                      <Grid item key={index}>
-                        <Item sx={{ fontSize: '12px', fontWeight: 500, p: '5px', backgroundColor: '#D9E3F7', color: '#717171' }}>
-                          {tech}
-                        </Item>
-                      </Grid>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    {project.technologies.map((tech, i) => (
+                      <Box
+                        key={i}
+                        sx={{
+                          fontFamily: fonts.mono,
+                          fontSize: '11px',
+                          color: colors.slate,
+                          border: `1px solid ${colors.line}`,
+                          borderRadius: '6px',
+                          px: '8px',
+                          py: '3px',
+                        }}
+                      >
+                        {tech}
+                      </Box>
                     ))}
-                  </Grid>
-                </CardActions>
-              </Card>
+                  </Box>
+                </Box>
+              </Box>
             </Grid>
           ))}
         </Grid>
       </Box>
 
       {!showAllProjects && (
-        <Box display="flex" justifyContent="center">
-          <Button variant="contained" onClick={() => setShowAllProjects(true)} sx={{ textTransform: 'none', backgroundColor: '#6600ff', width:isMobile ? '100px' : '100px', marginTop:isMobile ? '0' : '-10px', marginBottom:isMobile ? '0' :'1rem' }}>View all</Button>
+        <Box display="flex" justifyContent="center" sx={{ mt: 5 }}>
+          <Button
+            variant="outlined"
+            onClick={() => setShowAllProjects(true)}
+            sx={{
+              fontFamily: fonts.body,
+              textTransform: 'none',
+              fontWeight: 500,
+              borderRadius: '999px',
+              color: colors.ink,
+              borderColor: colors.line,
+              px: 3,
+              '&:hover': { borderColor: colors.accent, color: colors.accent, backgroundColor: colors.accentSoft },
+            }}
+          >
+            View all projects
+          </Button>
         </Box>
       )}
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="image-modal"
-        aria-describedby="modal showing full image"
-      >
+      <Modal open={open} onClose={handleClose} aria-labelledby="image-modal" aria-describedby="modal showing full image">
         <Box
           sx={{
             position: 'absolute',
@@ -148,16 +163,17 @@ const Projects = forwardRef((props, ref) => {
             width: '80vw',
             maxWidth: '800px',
             maxHeight: '80vh',
-            bgcolor: 'background.paper',
+            bgcolor: colors.surface,
+            borderRadius: '16px',
             boxShadow: 24,
-            p: 4,
+            p: 2,
             textAlign: 'center',
           }}
         >
-          <img src={selectedImage} alt="Full Project" style={{ maxWidth: '100%', maxHeight: '100%' }} />
+          <img src={selectedImage} alt="Full Project" style={{ maxWidth: '100%', maxHeight: '100%', borderRadius: '8px' }} />
         </Box>
       </Modal>
-    </div>
+    </Box>
   );
 });
 

@@ -1,12 +1,5 @@
 .scrollable-main {
-  /* background-color: rgb(28, 45, 85);
-  background: linear-gradient(90deg,
-      rgba(20, 24, 33, 1) 0%,
-      rgba(37, 43, 63, 1) 56%,
-      rgba(59, 69, 102, 1) 100%); */
-
-
-  background-color: #FDFDFD;
+  background-color: #F7F8FA;
   height: 100vh;
   width: 100vw;
   overflow-y: scroll;

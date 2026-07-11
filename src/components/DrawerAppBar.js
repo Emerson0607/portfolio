@@ -14,13 +14,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import { colors, fonts } from '../theme/tokens';
 
-const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Projects'];
+const drawerWidth = 260;
+const navItems = ['Home', 'About', 'Experience', 'Projects', 'Certificates'];
 
 function DrawerAppBar(props) {
   const { window, onNavClick } = props;
@@ -32,21 +32,27 @@ function DrawerAppBar(props) {
 
   const drawer = (
     <div>
-      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-        <Typography variant="h6" sx={{ my: 2 }}  onClick={() => onNavClick('Home')}>
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'left', px: 3, pt: 3 }}>
+        <Typography
+          sx={{ fontFamily: fonts.display, fontWeight: 700, fontSize: '18px', color: colors.ink, cursor: 'pointer' }}
+          onClick={() => onNavClick('Home')}
+        >
           Emerson Martinez
         </Typography>
-        <Divider />
-        <List>
-          {navItems.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: 'center' }} onClick={() => onNavClick(item)}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Box>
+      <Divider sx={{ my: 2, borderColor: colors.line }} />
+      <List>
+        {navItems.map((item) => (
+          <ListItem key={item} disablePadding>
+            <ListItemButton sx={{ textAlign: 'left', px: 3 }} onClick={() => onNavClick(item)}>
+              <ListItemText
+                primary={item}
+                primaryTypographyProps={{ sx: { fontFamily: fonts.body, fontWeight: 500, color: colors.ink } }}
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
     </div>
   );
 
@@ -57,59 +63,51 @@ function DrawerAppBar(props) {
       <CssBaseline />
       <AppBar
         component="nav"
+        elevation={0}
         sx={{
-          background: '#FDFDFD',
-          boxShadow: '0px 2px 2px -2px rgba(0,0,0,0.1)', // Bottom-only box shadow
+          background: colors.surface,
+          borderBottom: `1px solid ${colors.line}`,
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ maxWidth: 1200, width: '100%', mx: 'auto' }}>
           <IconButton
-            color="#1C2D55"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: 'none' }, color: colors.ink }}
           >
             <MenuIcon />
           </IconButton>
+
           <Typography
-            variant="h6"
-            component="div"
             sx={{
-              color: '#1C2D55',
+              fontFamily: fonts.display,
+              fontWeight: 700,
+              fontSize: '17px',
+              color: colors.ink,
               flexGrow: 1,
-              display: { xs: 'none', sm: 'block' },
-              ml: '70px',
-              fontSize: '1rem',
-              letterSpacing: '1em',
-              cursor: 'pointer', // Add cursor pointer
+              cursor: 'pointer',
             }}
-            onClick={() => onNavClick('Home')} // Navigate to Home
+            onClick={() => onNavClick('Home')}
           >
-            <Typography
-              component="span"
-              sx={{
-                color: '#1C2D55',
-                fontWeight: 700,
-                fontSize: '24px',
-                fontFamily: 'Roboto, sans-serif',
-              }}
-            >
-              EM
-            </Typography>
+            EM
           </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' }, mr: 8 }}>
-            {navItems.map((item, index) => (
+
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 1 }}>
+            {navItems.slice(1).map((item) => (
               <Button
                 key={item}
-                sx={{
-                  color: '#1C2D55',
-                  fontWeight: 400,
-                  textTransform: 'none',
-                  fontSize: '16px',
-                  mr: index < navItems.length - 1 ? 2 : 0, // Add bottom margin except for the last item
-                }}
                 onClick={() => onNavClick(item)}
+                sx={{
+                  fontFamily: fonts.body,
+                  color: colors.slate,
+                  fontWeight: 500,
+                  textTransform: 'none',
+                  fontSize: '15px',
+                  borderRadius: '999px',
+                  px: 2,
+                  '&:hover': { color: colors.accent, backgroundColor: colors.accentSoft },
+                }}
               >
                 {item}
               </Button>
@@ -123,12 +121,10 @@ function DrawerAppBar(props) {
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
+          ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth, backgroundColor: colors.surface },
           }}
         >
           {drawer}

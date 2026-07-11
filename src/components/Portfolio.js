@@ -1,45 +1,37 @@
 import React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import emeee from '../image/emeee.JPG';
-import linkedin from '../image/linkedin.png';
-import gmail from '../image/gmail.png';
-import facebook from '../image/facebook.png';
-import github from '../image/github.png';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import EmailIcon from '@mui/icons-material/Email';
 import { TypeAnimation } from 'react-type-animation';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
+import emeee from '../image/emeee.JPG';
+import '@fontsource/space-grotesk/700.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import { colors, fonts } from '../theme/tokens';
 import '../CSS/Portfolio.css';
 
-const Item = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(1),
-  textAlign: 'center'
-}));
+const socials = [
+  { icon: FacebookIcon, href: 'https://web.facebook.com/people/Emerson-Martinez/100010291444658/', label: 'Facebook' },
+  { icon: EmailIcon, href: 'mailto:martinezemerson52@gmail.com', label: 'Email' },
+  { icon: GitHubIcon, href: 'https://github.com/Emerson0607', label: 'Github' },
+  { icon: LinkedInIcon, href: 'https://www.linkedin.com/in/emerson-martinez-25510824b/', label: 'Linkedin' },
+];
 
-const textStyles = {
-  textAlign: 'left',
-  fontFamily: 'Roboto, sans-serif',
-};
-
-const avatarAttribute = {
-  width: '32px',
-  height: '32px',
-  cursor: 'pointer'
-};
-
-//For CV download
 const handleDownload = () => {
   const url = process.env.PUBLIC_URL + '/ELM_CV.pdf';
   const link = document.createElement('a');
   link.href = url;
-  link.setAttribute('download', 'Emerson_CV.pdf'); // Set the filename for the download
+  link.setAttribute('download', 'Emerson_Martinez_Resume.pdf');
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -49,102 +41,149 @@ const Portfolio = ({ onArrowClick }) => {
   const isMobile = useMediaQuery('(max-width:600px)');
 
   const handleArrowClick = () => {
-    if (onArrowClick) {
-      onArrowClick('About'); // Notify parent component about the click
-    }
+    if (onArrowClick) onArrowClick('About');
   };
 
   return (
     <div>
-      <Box sx={{ flexGrow: 1, height: '100vh', width: '100vw' }} display="flex" justifyContent="center" alignItems="center">
-        <Grid container sx={{ width: isMobile ? '100%' : '80%' }}>
-          <Grid justifyContent="center" alignItems="center" item xs={12} md={5}>
-            <Item sx={{ backgroundColor: 'transparent', boxShadow: '0 0 0 0' }}>
+      <Box
+        sx={{ minHeight: '100vh', width: '100vw', backgroundColor: colors.paper, pt: isMobile ? '96px' : 0 }}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Grid container sx={{ width: isMobile ? '88%' : '78%', maxWidth: 1080 }} alignItems="center" spacing={isMobile ? 4 : 6}>
+          <Grid item xs={12} md={7} order={{ xs: 2, md: 1 }}>
+            <Typography sx={{ fontFamily: fonts.mono, fontSize: '13px', letterSpacing: '0.14em', color: colors.accent, mb: 2 }}>
+              WEB DEVELOPER — PHILIPPINES
+            </Typography>
+
+            <Typography
+              sx={{
+                fontFamily: fonts.display,
+                fontWeight: 700,
+                color: colors.ink,
+                fontSize: isMobile ? '42px' : '64px',
+                lineHeight: 1.05,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Emerson Martinez.
+            </Typography>
+
+            <Typography
+              sx={{
+                fontFamily: fonts.display,
+                fontWeight: 500,
+                fontSize: isMobile ? '20px' : '28px',
+                color: colors.slate,
+                mt: 1.5,
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '8px',
+              }}
+            >
+              I build
+              <TypeAnimation
+                sequence={[' web applications', 2600, ' developer tools', 2600, ' software systems', 2600]}
+                speed={20}
+                repeat={Infinity}
+                style={{ color: colors.accent, fontWeight: 700 }}
+              />
+            </Typography>
+
+            <Typography
+              sx={{
+                fontFamily: fonts.body,
+                fontSize: isMobile ? '15px' : '17px',
+                lineHeight: 1.7,
+                color: colors.slate,
+                mt: 3,
+                maxWidth: 520,
+              }}
+            >
+              Passionate about coding and solving complex problems, specializing in
+              interactive web applications. I enjoy building thoughtful solutions
+              and bringing ideas to life with a keen eye for detail.
+            </Typography>
+
+            <Stack direction={isMobile ? 'column' : 'row'} spacing={2} alignItems={isMobile ? 'flex-start' : 'center'} sx={{ mt: 4 }}>
+              <Button
+                variant="contained"
+                disableElevation
+                onClick={handleDownload}
+                sx={{
+                  fontFamily: fonts.body,
+                  textTransform: 'none',
+                  fontWeight: 500,
+                  backgroundColor: colors.ink,
+                  color: '#fff',
+                  borderRadius: '999px',
+                  px: 3,
+                  py: 1.1,
+                  '&:hover': { backgroundColor: colors.accent },
+                }}
+              >
+                Download Resume
+              </Button>
+
+              <Stack direction="row" spacing={0.5}>
+                {socials.map(({ icon: Icon, href, label }) => (
+                  <IconButton
+                    key={label}
+                    component="a"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    sx={{
+                      color: colors.slate,
+                      transition: 'color 0.2s ease',
+                      '&:hover': { color: colors.accent, backgroundColor: colors.accentSoft },
+                    }}
+                  >
+                    <Icon fontSize="small" />
+                  </IconButton>
+                ))}
+              </Stack>
+            </Stack>
+          </Grid>
+
+          <Grid item xs={12} md={5} order={{ xs: 1, md: 2 }} display="flex" justifyContent="center">
+            <Box
+              sx={{
+                width: isMobile ? 200 : 320,
+                height: isMobile ? 200 : 320,
+                borderRadius: '24px',
+                border: `1px solid ${colors.line}`,
+                overflow: 'hidden',
+                position: 'relative',
+                '&::after': {
+                  content: '""',
+                  position: 'absolute',
+                  inset: 0,
+                  boxShadow: `inset 0 0 0 1px ${colors.line}`,
+                  borderRadius: '24px',
+                },
+              }}
+            >
               <img
                 src={emeee}
-                style={{
-                  marginTop: isMobile ? '10rem' : '4rem',
-                  width: isMobile ? '200px' : '300px',
-                  height: isMobile ? '200px' : '300px',
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  objectPosition: 'center 15%',
-                }}
-                alt="eme"
+                alt="Emerson Martinez"
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%' }}
               />
-            </Item>
-          </Grid>
-          <Grid item xs={12} md={7}>
-            <Item
-              style={{
-                ...textStyles,
-                backgroundColor: 'transparent',
-                boxShadow: '0 0 0 0',
-                marginLeft: isMobile ? '8px' : '48px',
-                padding:'32px'
-              }}
-              sx={{ height: 500 }}
-            >
-              <div style={{ color: 'rgb(28, 45, 85)', marginTop: isMobile ? '-20px' : '0px' }}>
-                <h1 style={{ fontSize: isMobile ? '40px' : '70px' }}>Hi, I'm Emerson</h1>
-                <h1 style={{ fontWeight: 500, fontSize: isMobile ? '20px' : '30px', marginTop: isMobile ? '20px' :'0px' }}> I'm a
-                  <TypeAnimation
-                    sequence={[
-                      " Web Developer",
-                      3000,
-                      " Computer Programmer",
-                      3000,
-                      " Software Developer",
-                      3000,
-                    ]}
-                    speed={20}
-                    repeat={Infinity}
-                    style={{ fontSize: isMobile ? '20px' : '30px', fontWeight: 800, color: '#6600ff', fontFamily: 'Roboto, sans-serif' }}
-                  />
-                </h1>
-                <p style={{ maxWidth: 500, fontSize: isMobile ? '15px' : '20px', marginTop: '16px', lineHeight: '32px', color: '#898989', fontFamily: 'Roboto, sans-serif' }}>Passionate about coding and solving complex problems, specializing in crafting interactive web applications. I enjoy creating innovative solutions and bringing online visions to life with a keen eye for aesthetics.</p>
-
-                <Grid container alignItems="center" sx={{ mt: '1rem' }}>
-                  <Grid item xs={5} md={12} sx={{ display: 'flex', justifyContent: isMobile ? 'flex-start' : 'inherit' }}>
-                    <Button
-                      variant="outlined"
-                      sx={{ mt: isMobile ? 0 : '32px', color: 'rgb(28, 45, 85)', textTransform: 'none' }}
-                      onClick={handleDownload}
-                    >
-                      Download Resume
-                    </Button>
-                  </Grid>
-                  <Grid item xs={7} md={12} sx={{ display: 'flex', justifyContent: isMobile ? 'flex-end' : 'inherit' }}>
-                    <Stack
-                      direction="row"
-                      spacing={isMobile ? 1 : 2}
-                      sx={{ mt: isMobile ? 0 : '24px' }}
-                    >
-                      <a href="https://web.facebook.com/people/Emerson-Martinez/100010291444658/" target="_blank" rel="noopener noreferrer">
-                        <img style={avatarAttribute} alt="Facebook" src={facebook} />
-                      </a>
-                      <a href="mailto:martinezemerson52@gmail.com" target="_blank" rel="noopener noreferrer">
-                        <img style={avatarAttribute} alt="Email" src={gmail} />
-                      </a>
-                      <a href="https://github.com/Emerson0607" target="_blank" rel="noopener noreferrer">
-                        <img style={avatarAttribute} alt="Github" src={github} />
-                      </a>
-                      <a href="https://www.linkedin.com/in/emerson-martinez-25510824b/" target="_blank" rel="noopener noreferrer">
-                        <img style={avatarAttribute} alt="Linkedin" src={linkedin} />
-                      </a>
-                    </Stack>
-                  </Grid>
-                </Grid>
-              </div>
-            </Item>
+            </Box>
           </Grid>
         </Grid>
       </Box>
-      <div className="arrowBox" onClick={handleArrowClick} >
-        <div className="arrow" style={{display: isMobile ? 'none' : 'block'}}><span></span></div>
+
+      <div className="arrowBox" onClick={handleArrowClick}>
+        <div className="arrow" style={{ display: isMobile ? 'none' : 'block' }}>
+          <span></span>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Portfolio;
